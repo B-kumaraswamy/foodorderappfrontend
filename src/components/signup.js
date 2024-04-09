@@ -16,7 +16,9 @@ function SignUp(props) {
     const {name, phoneNumber, email, password, floatingMessage , /*errorValues,*/ phoneError,passwordError ,emailError,nameError,
         updateName, updateEmail, updatePassword, updatePhoneNumber, /*updateErrorValues,*/ updateFloatingMessage,
     updateEmailError, updatePasswordError, updatePhoneError, updateNameError} = props 
+     
     const onSignup = async() => {
+
         try {
             dispatch(updateFloatingMessage(""))  // if not for this line, message won't change and 
             //useEffect in floatingComponent won't render because useEffect renders upon change in dependency
@@ -107,21 +109,21 @@ function SignUp(props) {
         <div className="login-cart">
             <label className="login-heading">Name</label> 
             <input className="login-input" type = "text" value = {name} placeholder="Enter your name" onChange = {event => updateName(event.target.value)}/> 
-            <p>{nameError}</p> 
+            <p className="error">{nameError}</p> 
 
             <label className="login-heading">Phone Number</label>
             <input className="login-input" placeholder="Enter your Phone Number" value = {phoneNumber} onChange = {event => updatePhoneNumber(event.target.value)}/> 
-            <p>{phoneError}</p>
+            <p className="error">{phoneError}</p>
             
             <label className="login-heading">Email</label>
             <input className="login-input" placeholder="Enter your Email" value = {email}  onChange = {event => updateEmail(event.target.value)}/>
-            <p>{emailError}</p> 
+            <p className="error">{emailError}</p> 
             
             <label className="login-heading">Password</label>
             <input className="login-input" placeholder="Enter Valid Password" type="password" 
             value = {password} onChange = {event => updatePassword(event.target.value)}
             onKeyDown= {(event) => {if(event.keyCode === 13) onSignup()}}/> 
-            <p>{passwordError}</p> 
+            <p className="error">{passwordError}</p> 
             
             <button className="login-button" onClick={onSignup}>Sign Up</button>
          
