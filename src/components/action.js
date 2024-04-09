@@ -156,6 +156,20 @@ export const updateCartList = (cart) => {
     }
 }
 
+export const updateTotal = (total) => {
+    return {
+        type : "updateTotal",
+        payload : total
+    }
+}
+
+export const updateItems = () => {
+    return {
+        type : "updateItems"
+        
+    }
+}
+
 /*
 In the context provided, passing only the itemId as an argument to the increaseQuantity and decreaseQuantity actions makes sense if you want to specifically target the quantity of a particular item identified by its unique itemId.
 

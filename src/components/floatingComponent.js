@@ -11,6 +11,8 @@ function FloatingMessage({message}) {
                 setVisible(false)
             }, 1000);
 
+            return () => clearTimeout(timerId);
+
         }
     }, [message])
     

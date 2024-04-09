@@ -7,20 +7,25 @@ import { useDispatch } from "react-redux"
 import FloatingMessage from "./floatingComponent"
 import Cookie from "js-cookie"
 import HeadersComponent from "./headersComponent"
-import { useNavigate } from "react-router-dom"
+import {Navigate, useNavigate } from "react-router-dom"
+import "./loginComponent.css"
 function LoginComponent(props) {
-    console.log("at line 9")
+  
    const dispatch = useDispatch()
-   console.log("at line 11")
+ 
+   const token = Cookie.get("jwt_token")
    const navigate = useNavigate()
-    const {email, password, floatingMessage, loggedIn, updateLoginPassword, updateLoginEmail, updateFloatingMessage, updateLoggedIn} = props
-    
-    const onLogin = async() => {
+    const {email, password, floatingMessage, updateLoginPassword, updateLoginEmail, updateFloatingMessage, updateLoggedIn} = props
+   
 
+      
+
+    const onLogin = async() => {
+       
         try {
             console.log("at line 15")
-            
-            dispatch(updateFloatingMessage(""))
+           
+           
             console.log("at line 18")
             const url = "http://localhost:8080/login"
         const body = {
@@ -35,15 +40,22 @@ function LoginComponent(props) {
             console.log("loggedin successfully")
             Cookie.set("jwt_token", response.data.token)
             dispatch(updateLoggedIn(true))
-            dispatch(updateFloatingMessage(response.data.message))
+           
+            setTimeout(() => {
+                navigate("/")
+            }, 1000);
             
-            navigate("/")
+            dispatch(updateFloatingMessage(response.data.message))
+
+            setTimeout(() => {
+                dispatch(updateFloatingMessage(""))
+            }, 1000);
 
         }
 
         dispatch(updateLoginPassword(""))
         dispatch(updateLoginEmail(""))
-
+       
         
 
         }
@@ -71,23 +83,32 @@ function LoginComponent(props) {
     }
     
     
+  if(token === undefined) {
     return (
         <div>
-            <HeadersComponent/>
-            <label>Email</label>
-            <input value = {email} placeholder="Enter valid MailId" 
-            onChange={event => updateLoginEmail(event.target.value)}/> <br/>  <br/>
-            <label>Password</label>
+             <HeadersComponent/>
+        <div className="login-cart">
+           
+            <label className="login-heading">Email</label>
+            <input value = {email} placeholder="Enter valid MailId"  className="login-input"
+            onChange={event => updateLoginEmail(event.target.value)}/> <br/> 
+            <label className="login-heading">Password</label>
             <input type="password" value={password} placeholder="Enter valid Password"
-            onChange={event => updateLoginPassword(event.target.value)}/>  <br/>  <br/>
-            <span>Not registered yet? <Link to = "/signup">SignUp</Link></span>  <br/>  <br/>
-            <button onClick={onLogin}>Login</button>
+            className="login-input" onChange={event => updateLoginPassword(event.target.value)}/>  <br/> 
+            <span>Not registered yet? <Link to = "/signup">SignUp</Link></span>  <br/>  
+            <button onClick={onLogin} className="login-button">Login</button>
             <FloatingMessage message = {floatingMessage}/>
 
 
 
         </div>
+        </div>
     )
+  }
+
+  else {
+    return <Navigate to = "/"/>
+  }
 }
 
 

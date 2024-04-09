@@ -1,6 +1,7 @@
 const initialState = {
     items : {},
-    cartList : []
+    cartList : [],
+    grandTotal : 0
 }
 
 const cartReducer = (state7 = initialState, action) => {
@@ -51,7 +52,19 @@ const cartReducer = (state7 = initialState, action) => {
             }
         }
 
+        case "updateTotal" : {
+            return {
+                ...state7,
+                grandTotal : state7.grandTotal + action.payload
+            }
+        }
 
+        case "updateItems" : {
+            return {
+                ...state7,
+                items : {}
+            }
+        }
 
         default : {
             return state7

@@ -7,7 +7,8 @@ import React from "react"
 import axios from "axios"
 import FloatingMessage from "./floatingComponent"
 import { useNavigate } from "react-router-dom"
-
+import "./loginComponent.css"
+import HeadersComponent from "./headersComponent"
 
 function SignUp(props) {
     const dispatch = useDispatch()
@@ -83,6 +84,8 @@ function SignUp(props) {
                     else  {  // checking (eachErrList[0] === "password")
                         dispatch(updatePasswordError(eachErrList[1]))  
                     }
+
+                    return null
                     
                 })
                 // Join the array of error messages into a single string
@@ -100,27 +103,30 @@ function SignUp(props) {
     
     return (
         <div>
-            <label>Name</label> 
-            <input type = "text" value = {name} placeholder="Enter your name" onChange = {event => updateName(event.target.value)}/> 
-            <p>{nameError}</p> <br/> <br/>
+        <HeadersComponent/>
+        <div className="login-cart">
+            <label className="login-heading">Name</label> 
+            <input className="login-input" type = "text" value = {name} placeholder="Enter your name" onChange = {event => updateName(event.target.value)}/> 
+            <p>{nameError}</p> 
 
-            <label>Phone Number</label>
-            <input placeholder="Enter your Phone Number" value = {phoneNumber} onChange = {event => updatePhoneNumber(event.target.value)}/> 
-            <p>{phoneError}</p> <br/> <br/>
+            <label className="login-heading">Phone Number</label>
+            <input className="login-input" placeholder="Enter your Phone Number" value = {phoneNumber} onChange = {event => updatePhoneNumber(event.target.value)}/> 
+            <p>{phoneError}</p>
             
-            <label>Email</label>
-            <input placeholder="Enter your Email" value = {email}  onChange = {event => updateEmail(event.target.value)}/>
-            <p>{emailError}</p> <br/> <br/>
+            <label className="login-heading">Email</label>
+            <input className="login-input" placeholder="Enter your Email" value = {email}  onChange = {event => updateEmail(event.target.value)}/>
+            <p>{emailError}</p> 
             
-            <label>Password</label>
-            <input placeholder="Enter Valid Password" type="password" 
+            <label className="login-heading">Password</label>
+            <input className="login-input" placeholder="Enter Valid Password" type="password" 
             value = {password} onChange = {event => updatePassword(event.target.value)}
             onKeyDown= {(event) => {if(event.keyCode === 13) onSignup()}}/> 
-            <p>{passwordError}</p> <br/> <br/>
+            <p>{passwordError}</p> 
             
-            <button onClick={onSignup}>Sign Up</button>
+            <button className="login-button" onClick={onSignup}>Sign Up</button>
          
             <FloatingMessage message={floatingMessage}/>
+        </div>
         </div>
     )
 }

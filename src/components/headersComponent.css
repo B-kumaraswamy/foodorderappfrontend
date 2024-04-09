@@ -3,6 +3,8 @@
     justify-content: flex-end; /* Align items to the right */
     align-items: center;
     padding: 20px;
+    background-color: lightgrey;
+    margin-bottom: 50px;
   }
   
   .header {
@@ -11,5 +13,9 @@
     font-weight: bold;
     font-size: 18px;
     margin-left: 20px; /* Add space between links */
+  }
+
+  .header:hover {
+    color: lightseagreen
   }
   

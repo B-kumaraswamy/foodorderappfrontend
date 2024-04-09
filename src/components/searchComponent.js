@@ -1,18 +1,23 @@
 import HeadersComponent from "./headersComponent"
 import axios from "axios"
-//import Cookie from "js-cookie"
+import Cookie from "js-cookie"
 import "./searchComponent.css"
 import { connect } from "react-redux"
 import { updateDishArray, updateInputValue } from "./action"
 import { useDispatch } from "react-redux"
 import DishComponent from "./dishComponent"
-import { useParams } from "react-router-dom"
+import { useParams, Navigate } from "react-router-dom"
 import {  useEffect } from "react"
+ 
 function SearchComponent(props) {
-    //const token = Cookie.get("jwt_token")
+    const token = Cookie.get("jwt_token")
+    console.log("token in the login component", token)
     const {dishArray,inputValue, updateDishArray, updateInputValue} = props
     const dispatch = useDispatch()
     const {dishName} = useParams()
+ 
+  
+
 
         const home = async(name) => {
             dispatch(updateDishArray([]))
@@ -55,14 +60,14 @@ function SearchComponent(props) {
 
 
 
-   if(inputValue === "") {
+   if(inputValue === "" && token !== undefined) {
     return (
         <div>
             <HeadersComponent/>
           <div className="body">
             <div className="search">
            <input type="search" placeholder="Search for Dishes" 
-           value = {inputValue}
+           value = {inputValue} className="search-width"
           onChange={event => handleChange(event.target.value)}
            /> 
         </div>
@@ -71,7 +76,7 @@ function SearchComponent(props) {
            <div className="cuisines-list">
                
                 <div className="cuisine-item" >
-                        <a href = "/dish/dessert"   >
+                        <a href = "/dish/dessert"  >
                             <div>
                             <img alt = "image1" className = "cuisine-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8NIiQ3p-TNS6be9ty2Mmh9NAmaS9CPLajLg&usqp=CA"/>
                             <p className="dish-name">Dessert</p>
@@ -124,26 +129,34 @@ function SearchComponent(props) {
     )
    }
 
-   return (
-    <div>
-        <HeadersComponent/>
-      <div className="body">
-        <div className="search">
-       <input type="search" placeholder="Search for Dishes" 
-       value = {inputValue}
-      onChange={event => handleChange(event.target.value)}
-       /> 
-    </div>
-      
+   else if (token === undefined) {
+        return <Navigate to = "/login"/>
+   }
+
+   else {
+    return (
+        <div>
+            <HeadersComponent/>
+          <div className="body">
+            <div className="search">
+           <input type="search" placeholder="Search for Dishes" 
+           value = {inputValue} className="search-width"
+          onChange={event => handleChange(event.target.value)}
+           /> 
+        </div>
+          
+           
+         <ul>{dishArray.map(eachDish => <DishComponent key = {eachDish._id} result = {eachDish}/>)}</ul>
+           </div> 
        
-     <ul>{dishArray.map(eachDish => <DishComponent key = {eachDish._id} result = {eachDish}/>)}</ul>
-       </div> 
-   
-   
        
-   
-    </div>
-)
+           
+       
+        </div>
+    )
+   }
+
+
 }
 
 const mapStatetoProps = (state) => {

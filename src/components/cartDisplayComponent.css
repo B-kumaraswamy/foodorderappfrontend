@@ -85,3 +85,31 @@
 .button:hover {
     background-color: #0056b3;
 }
+
+.res-name {
+    margin-left: 300px;
+}
+
+.grand-total {
+   margin-left: 500px;
+   position: relative;
+   display: block;
+    
+}
+
+.checkout {
+    position: inherit;
+    margin-left: 645px;
+    padding: 12px;
+   
+}
+
+ .emptycart-image {
+  margin-left: 550px;
+  margin-top: 100px;
+  
+}
+
+.emptycart-heading {
+    margin-left: 580px;
+}
