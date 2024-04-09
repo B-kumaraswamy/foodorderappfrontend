@@ -18,7 +18,7 @@ function RestaurantComponent(props) {
         useEffect(() => {
             const getRestaurant = async() => {
                 dispatch(updateRestaurantArray([]))
-                const url = `http://localhost:8080/restaurant/${restaurantName}`
+                const url = `https://foodorderappbackend.onrender.com/restaurant/${restaurantName}`
                 const response = await axios.get(url)
     
                 console.log("response in restaurant", response.data)

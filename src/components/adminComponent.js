@@ -20,7 +20,7 @@ function AdminComponent(props) {
         const formData = new FormData();
         formData.append("file", file)
 
-        const url = "http://localhost:8080/products/bulk"
+        const url = "https://foodorderappbackend.onrender.com/products/bulk"
         
         const headers = {
             "Authorization" : `Bearer ${token}`,

@@ -1,12 +1,12 @@
 import "./cartDisplayComponent.css"
 import { updateQuantity, increaseQuantity, decreaseQuantity, updateTotal } from "./action"
 import { connect } from "react-redux"
-import { useDispatch } from "react-redux"
+
 
 function CartDisplayComponent(props) {
-    const dispatch = useDispatch()
-    const {restaurant, dishName, imageUrl, price, _id} = props.result
-    const {items, increaseQuantity, decreaseQuantity, updateTotal} = props
+   
+    const { dishName, imageUrl, price, _id} = props.result
+    const {items} = props
     const totalPrice = price*items[_id]
     //dispatch(updateTotal(totalPrice))
 

@@ -27,7 +27,7 @@ function LoginComponent(props) {
            
            
             console.log("at line 18")
-            const url = "http://localhost:8080/login"
+            const url = "https://foodorderappbackend.onrender.com/login"
         const body = {
             email : email,
             password : password

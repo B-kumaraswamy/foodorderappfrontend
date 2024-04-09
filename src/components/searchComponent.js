@@ -26,7 +26,7 @@ function SearchComponent(props) {
                 try {
               
                    
-                    const url = `http://localhost:8080/search/${name}`
+                    const url = `https://foodorderappbackend.onrender.com/search/${name}`
                    /*const headers = {
                         "Authorization" : `Bearer ${token}`
                     }*/

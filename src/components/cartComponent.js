@@ -43,7 +43,7 @@ function CartComponent(props) {
                 
                 console.log("itemIds in the cart component", itemIds)
 
-                const url = "http://localhost:8080/cart"
+                const url = "https://foodorderappbackend.onrender.com/cart"
         
                 const response = await axios.get(url, {params : itemIds})
                 console.log("response in the cart component", response.data)

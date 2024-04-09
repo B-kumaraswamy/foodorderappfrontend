@@ -32,7 +32,7 @@ function SignUp(props) {
             
             
             
-            const url = "http://localhost:8080/signup"
+            const url = "https://foodorderappbackend.onrender.com/signup"
             const body = {
                 name : name,
                 phoneNumber : phoneNumber,
