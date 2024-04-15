@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux"
 import DishComponent from "./dishComponent"
 import { useParams, Navigate } from "react-router-dom"
 import { useEffect, useCallback } from "react"
- 
+import { Link } from "react-router-dom"
 function SearchComponent(props) {
     const token = Cookie.get("jwt_token")
     console.log("token in the login component", token)
@@ -57,44 +57,44 @@ function SearchComponent(props) {
                         <h3>Popular Cuisines</h3>
                         <div className="cuisines-list">
                             <div className="cuisine-item">
-                                <a href="/dish/dessert">
+                                <Link to="/dish/dessert">
                                     <div>
                                         <img alt="image1" className="cuisine-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8NIiQ3p-TNS6be9ty2Mmh9NAmaS9CPLajLg&usqp=CA" />
                                         <p className="dish-name">Dessert</p>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                             <div className="cuisine-item">
-                                <a href="/dish/biryani">
+                                <Link to="/dish/biryani">
                                     <div>
                                         <img alt="image2" className="cuisine-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL64QU2oeAYPk289-33qxDbTyU6m0R6o13TQ&usqp=CAU" />
                                         <p className="dish-name">Biryani</p>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                             <div className="cuisine-item">
-                                <a href="/dish/milkshake">
+                                <Link to="/dish/milkshake">
                                     <div>
                                         <img alt="image3" className="cuisine-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAH-OEPw1P3LaoAWvx7I1vyclxopJ1Cjq08w&usqp=CAU" />
                                         <p className="dish-name">Milkshake</p>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                             <div className="cuisine-item">
-                                <a href="/dish/cake">
+                                <Link to="/dish/cake">
                                     <div>
                                         <img alt="image4" className="cuisine-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldf-LgnL3a-zE3oNCHE0eu0NXvaatfB57KQ&usqp=CAU" />
                                         <p className="dish-name">Cake</p>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                             <div className="cuisine-item">
-                                <a href="/dish/rolls">
+                                <Link to="/dish/rolls">
                                     <div>
                                         <img alt="image5" className="cuisine-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIrOqbiPAvURqZILlHRYd3YXuFHQi2Iu1A_w&usqp=CAU" />
                                         <p className="dish-name">Rolls</p>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
