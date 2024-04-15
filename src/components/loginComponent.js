@@ -23,10 +23,7 @@ function LoginComponent(props) {
     const onLogin = async() => {
        
         try {
-            console.log("at line 15")
-           
-           
-            console.log("at line 18")
+          
             const url = "https://foodorderappbackend.onrender.com/login"
         const body = {
             email : email,
@@ -40,17 +37,18 @@ function LoginComponent(props) {
             console.log("loggedin successfully")
             Cookie.set("jwt_token", response.data.token)
             dispatch(updateLoggedIn(true))
-           
-            setTimeout(() => {
-                navigate("/")
-            }, 1000);
-            
             dispatch(updateFloatingMessage(response.data.message))
-
+            setTimeout(() => {
+                console.log("floatin message in the set timeout login component", floatingMessage)
+               
+               
+            }, 10000);
+            
             setTimeout(() => {
                 dispatch(updateFloatingMessage(""))
-            }, 1000);
+            }, 5000);
 
+           
         }
 
         dispatch(updateLoginPassword(""))
@@ -63,6 +61,7 @@ function LoginComponent(props) {
         catch(err) {
             console.log("login frontend catch err", err)
             if(err.response.data.status === 401) {
+                console.log("inside login component frontend 401 error", err.response.data.message)
                 dispatch(updateFloatingMessage(err.response.data.message))
             }
 
@@ -79,6 +78,7 @@ function LoginComponent(props) {
                 console.log("entering catch err else", err)
             }
         }
+
 
     }
     
@@ -116,7 +116,7 @@ const mapStatetoProps = (state) => {
     console.log("state in the loginComponent", state)
     const {floatingMessage} =  state.state2
     const {email, password, loggedIn} = state.state3 
-
+console.log("mapStatetoProps floatingMessage login component", floatingMessage)
     
     return {
         email : email,

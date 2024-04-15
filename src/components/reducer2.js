@@ -17,6 +17,7 @@ const reducer2 = (state2 = inititalState, action) => {
         }*/
 
         case "floatingMessage": {
+            console.log("inside the floatingMessage reducer")
             return {
                 ...state2,
                 floatingMessage : action.payload

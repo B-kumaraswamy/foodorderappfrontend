@@ -5,11 +5,12 @@ function FloatingMessage({message}) {
 
     useEffect(() => {
         if(message) {
+            console.log("inside floating component message", message)
             setVisible(true)
             let timerId 
             timerId = setTimeout(() => {
                 setVisible(false)
-            }, 1000);
+            }, 5000);
 
             return () => clearTimeout(timerId);
 
