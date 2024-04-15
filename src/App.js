@@ -9,6 +9,7 @@ import SearchComponent from "./components/searchComponent";
 import AdminComponent from "./components/adminComponent";
 import RestaurantComponent from "./components/restaurantComponent";
 import CartComponent from "./components/cartComponent";
+import NotFoundComponent from "./components/notFoundComponent";
 
 function FoodOrderApp() {
   return (
@@ -22,6 +23,7 @@ function FoodOrderApp() {
         <Route exact path = "/login" element = {<LoginComponent/>}/>
         <Route exact path= "/restaurant/:restaurantName" element = {<RestaurantComponent/>}/>
         <Route exact path = "/cart" element = {<CartComponent/>}/> 
+        <Route path = "*" element = {<NotFoundComponent/>}/>
       </Routes>
     </BrowserRouter>
    </Provider>
