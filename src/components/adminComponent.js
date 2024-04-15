@@ -2,14 +2,13 @@ import Cookie from "js-cookie"
 import { connect, useDispatch } from "react-redux"
 import {uploadFile} from "./action"
 import axios from "axios"
-import { UseDispatch } from "react-redux"
-import { Navigate } from "react-router-dom"
+
 // import Cookie from "js-cookie"
 
 function AdminComponent(props) {
     // const navigate = useNavigate()
     
-    const {file, uploadFile, loggedIn} = props
+    const {file, uploadFile} = props
     const dispatch = useDispatch()
    // you can write common api for the authorization of a component here. Loophole without writing such api is..... here the user will come to know he/she is unauthorized upon submitting the file and not while he/she is trying to access admin component. So write common api for all the components you want to authorize, and put necessary code (here onUploadFile) in if... else navigate to home or login. 
     
@@ -54,11 +53,11 @@ function AdminComponent(props) {
 
 const mapStatetoProps =(state) => {
     const {file} = state.state4 
-    const {loggedIn} = state.state3
+    
 
     return {
-        file : file,
-        loggedIn : loggedIn
+        file : file
+       
     }
 }
 
