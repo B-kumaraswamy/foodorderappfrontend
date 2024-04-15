@@ -38,15 +38,7 @@ function LoginComponent(props) {
             Cookie.set("jwt_token", response.data.token)
             dispatch(updateLoggedIn(true))
             dispatch(updateFloatingMessage(response.data.message))
-            setTimeout(() => {
-                console.log("floatin message in the set timeout login component", floatingMessage)
-               
-               
-            }, 10000);
             
-            setTimeout(() => {
-                dispatch(updateFloatingMessage(""))
-            }, 5000);
 
            
         }
