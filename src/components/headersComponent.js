@@ -28,7 +28,7 @@ function HeadersComponent(props) {
                 <Link className = "header" to= "/" onClick={() => dispatch(updateInputValue(""))}>Home</Link> &nbsp;  &nbsp;
           
           
-                <Link className = "header" to= "/login"  >Login</Link>
+                <Link className = "header" to= "/login"   >Login</Link>
             
 
                 <Link to = "/cart" className = "header">Cart</Link>

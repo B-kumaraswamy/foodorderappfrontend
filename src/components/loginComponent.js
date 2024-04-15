@@ -1,31 +1,31 @@
 
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
-import { updateLoginPassword, updateLoginEmail, updateFloatingMessage, updateLoggedIn} from "./action"
+import { updateLoginPassword, updateLoginEmail, updateFloatingMessage, updateLoggedIn, updateInputValue, updateNav} from "./action"
 import axios from "axios"
 import { useDispatch } from "react-redux"
 import FloatingMessage from "./floatingComponent"
 import Cookie from "js-cookie"
 import HeadersComponent from "./headersComponent"
-import {Navigate, useNavigate } from "react-router-dom"
+import {Navigate } from "react-router-dom"
 import "./loginComponent.css"
+
 function LoginComponent(props) {
-  
+ 
    const dispatch = useDispatch()
  
    const token = Cookie.get("jwt_token")
-   const navigate = useNavigate()
-    const {email, password, floatingMessage, updateLoginPassword, updateLoginEmail, updateFloatingMessage, updateLoggedIn} = props
    
-
-      
+    const {email, password, floatingMessage,nav, updateLoginPassword, updateLoginEmail, updateFloatingMessage, updateLoggedIn, updateInputValue, updateNav} = props
+   
+    
 
     const onLogin = async() => {
        
         try {
           
             const url = "https://foodorderappbackend.onrender.com/login"
-        const body = {
+         const body = {
             email : email,
             password : password
         }
@@ -35,18 +35,19 @@ function LoginComponent(props) {
 
         if(response.data.status === 200) {
             console.log("loggedin successfully")
-            Cookie.set("jwt_token", response.data.token)
+           
             dispatch(updateLoggedIn(true))
             dispatch(updateFloatingMessage(response.data.message))
+           
             setTimeout(() => {
-                console.log("floatin message in the set timeout login component", floatingMessage)
-               
-               
-            }, 10000);
-            
-            setTimeout(() => {
+                dispatch(updateNav(true))
+                Cookie.set("jwt_token", response.data.token)
                 dispatch(updateFloatingMessage(""))
-            }, 5000);
+            },1000)
+            
+          
+
+        
 
            
         }
@@ -77,6 +78,10 @@ function LoginComponent(props) {
             else {
                 console.log("entering catch err else", err)
             }
+
+            setTimeout(() => {
+                dispatch(updateFloatingMessage(''))
+            }, 1000);
         }
 
 
@@ -106,15 +111,27 @@ function LoginComponent(props) {
     )
   }
 
-  else {
+  else if(nav === true ) {
+    return (
+        <div>
+            <FloatingMessage message={floatingMessage}/>
+            <Navigate to = "/"/>
+        </div>
+    )
+  }
+
+  else  {
+    dispatch(updateInputValue(""))
     return <Navigate to = "/"/>
   }
+
+ 
 }
 
 
 const mapStatetoProps = (state) => {
     console.log("state in the loginComponent", state)
-    const {floatingMessage} =  state.state2
+    const {floatingMessage, nav} =  state.state2
     const {email, password, loggedIn} = state.state3 
 console.log("mapStatetoProps floatingMessage login component", floatingMessage)
     
@@ -122,8 +139,9 @@ console.log("mapStatetoProps floatingMessage login component", floatingMessage)
         email : email,
         password : password,
         floatingMessage : floatingMessage,
-        loggedIn : loggedIn
+        loggedIn : loggedIn,
+        nav : nav
     }
 }
 
-export default connect(mapStatetoProps, {updateLoginPassword, updateLoginEmail, updateFloatingMessage, updateLoggedIn})(LoginComponent);
+export default connect(mapStatetoProps, {updateLoginPassword, updateLoginEmail, updateFloatingMessage, updateLoggedIn, updateInputValue, updateNav})(LoginComponent);

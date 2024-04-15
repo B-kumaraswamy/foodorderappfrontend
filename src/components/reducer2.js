@@ -4,7 +4,8 @@ const inititalState = {
     phoneError : "",
     emailError : "",
     passwordError : "",
-    nameError : ""
+    nameError : "",
+    nav : false
 }
 
 const reducer2 = (state2 = inititalState, action) => {
@@ -49,6 +50,13 @@ const reducer2 = (state2 = inititalState, action) => {
             return {
                 ...state2,
                 nameError : action.payload
+            }
+        }
+
+        case "setNav" : {
+            return {
+                ...state2,
+                nav : action.payload
             }
         }
 

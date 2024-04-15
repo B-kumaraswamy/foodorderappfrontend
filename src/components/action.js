@@ -34,6 +34,13 @@ export const updateErrorValues = (error) => {
     }
 }
 
+export const updateNav = (value) => {
+    return {
+        type : "setNav",
+        payload : value
+    }
+}
+
 
 export const updateFloatingMessage = (message) => {
     console.log("inside floating message action", message)

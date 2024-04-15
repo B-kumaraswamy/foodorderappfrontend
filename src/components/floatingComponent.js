@@ -10,14 +10,14 @@ function FloatingMessage({message}) {
             let timerId 
             timerId = setTimeout(() => {
                 setVisible(false)
-            }, 5000);
+            },1000);
 
-            return () => clearTimeout(timerId);
+            return () => clearTimeout(timerId); //it doesn't have any effect on the flow of the code. You can remove this
 
         }
     }, [message])
     
-    if (visible) {
+    if (visible && message !== '') {
         return (
             <center 
             style={{
