@@ -106,3 +106,12 @@ div p {
     color : rgb(9, 242, 118);
     font-weight: bold;
 }
+
+.gotoCartBtn {
+   position: fixed;
+   right: 5px;
+   padding: 10px;
+   margin-bottom: 10px;
+   font-size: medium;
+   
+}

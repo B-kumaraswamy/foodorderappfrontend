@@ -1,16 +1,59 @@
 import "./restaurantDetailsComponent.css"
-import { updateQuantity, increaseQuantity, decreaseQuantity } from "./action"
+import { updateQuantity, increaseQuantity, decreaseQuantity, updateItems, updateFloatingMessage } from "./action"
 import { connect } from "react-redux"
 import { useDispatch } from "react-redux"
+import axios from "axios"
 function RestaurantDetailsComponent(props) {
     const dispatch = useDispatch()
     console.log("props in the RestaurantDetailsComponent", props)
     const {dishName, price, imageUrl, _id} = props.result
-    const {items, updateQuantity} = props
+    const {items,updateQuantity, updateItems, updateFloatingMessage} = props
 
 
-const onAddingFoodItem = () => {
+const onAddingFoodItem = async() => {
+
+   try {
+    console.log("items length", items)
+        if(Object.keys(items).length !== 0) {
+            const itemIds = Object.keys(items)
+                
+    console.log("itemIds in the restaurant details component", itemIds)
+
+    const url = "https://foodorderappbackend.onrender.com/cart"
+
+    const response = await axios.get(url, {params : itemIds})
+    console.log("response inside onAddFoodItem res details component", response.data)
+       
+        console.log("inside onAddingFoodItem restaurant details compo items", items)
+       
+        console.log("inside onAddingFoodItem restaurant details compo props.result", props.result)
+
+        const resultArray = response.data.result[0]
+        let cartRestaurantName = resultArray.restaurant
+        console.log("cartRestaurantName", cartRestaurantName)
+       console.log("verifying res", cartRestaurantName === props.result.restaurant)
+       if(cartRestaurantName === props.result.restaurant) {
         dispatch(updateQuantity(_id, 1))
+       }
+
+       else {
+            dispatch(updateItems())
+            dispatch(updateQuantity(_id, 1))
+            dispatch(updateFloatingMessage("updating the cart with latest dishes selected"))
+       }
+    
+    }
+
+    else {
+        dispatch(updateQuantity(_id,1))
+    }
+
+       
+   }
+
+   catch(err) {
+    console.log("err in the res details component", err)
+   }
 }
 
 
@@ -65,7 +108,8 @@ const mapStatetoProps = (state) => {
 //console.log("type of items.quantity in mapStatetoProps ResDetailsComponent", typeof(items))
     return {
         items : items
+        
     }
 }
 
-export default connect(mapStatetoProps, {updateQuantity, increaseQuantity, decreaseQuantity})(RestaurantDetailsComponent)
+export default connect(mapStatetoProps, {updateQuantity, increaseQuantity, decreaseQuantity, updateItems, updateFloatingMessage})(RestaurantDetailsComponent)

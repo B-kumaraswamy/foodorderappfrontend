@@ -39,8 +39,10 @@ function CartComponent(props) {
             dispatch(updateCartList([]))
            
             try {
-                const itemIds = Object.keys(items)
-                
+                const itemIds = Object.keys(items).filter(eachKey => items[eachKey] !== 0)
+                //sending the req to the api which has the dishes with quantity atleast 1
+                // This code filters out the keys from the items object that have non-zero values, and itemIds will contain only those keys.
+
                 console.log("itemIds in the cart component", itemIds)
 
                 const url = "https://foodorderappbackend.onrender.com/cart"

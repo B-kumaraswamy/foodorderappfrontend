@@ -3,32 +3,48 @@ import axios from "axios"
 import Cookie from "js-cookie"
 import "./searchComponent.css"
 import { connect } from "react-redux"
-import { updateDishArray, updateInputValue } from "./action"
+import { updateDishArray, updateFloatingMessage, updateInputValue } from "./action"
 import { useDispatch } from "react-redux"
 import DishComponent from "./dishComponent"
 import { useParams, Navigate } from "react-router-dom"
 import { useEffect, useCallback } from "react"
 import { Link } from "react-router-dom"
+import FloatingMessage from "./floatingComponent"
 function SearchComponent(props) {
     const token = Cookie.get("jwt_token")
     console.log("token in the login component", token)
-    const { dishArray, inputValue, updateDishArray, updateInputValue } = props
+    const { dishArray, inputValue, updateDishArray, updateInputValue, floatingMessage } = props
     const dispatch = useDispatch()
     const { dishName } = useParams()
 
     const handleChange = useCallback((value) => {
         dispatch(updateInputValue(value))
+        
         const handleSearch = async (name) => {
             dispatch(updateDishArray([]))
+            dispatch(updateFloatingMessage(""))
             if (name.trim() !== "") {
                 console.log("inside home function", name)
                 try {
                     const url = `https://foodorderappbackend.onrender.com/search/${name}`
                     const response = await axios.get(url)
                     console.log("response in the search frontend", response.data)
-                    dispatch(updateDishArray(response.data.message))
+                    if(response.data.status === 200) {
+                        dispatch(updateDishArray(response.data.message))
+                    }
+
                 } catch (err) {
-                    console.log(err)
+                    
+                    if(err.response.data.status === 404) {
+                        setTimeout(() => {
+                            dispatch(updateFloatingMessage(err.response.data.message))
+                        }, 1000);
+                    }
+
+                    else {
+                        console.log(err)
+                    }
+                   
                 }
             }
         }
@@ -114,6 +130,7 @@ function SearchComponent(props) {
                             />
                         </div>
                         <ul>{dishArray.map(eachDish => <DishComponent key={eachDish._id} result={eachDish} />)}</ul>
+                        <FloatingMessage message={floatingMessage}/>
                     </div>
                 </div>
             )
@@ -125,13 +142,15 @@ function SearchComponent(props) {
 
 const mapStatetoProps = (state) => {
     const { dishArray, inputValue } = state.state5
+    const {floatingMessage} = state.state2
     return {
         dishArray: dishArray,
-        inputValue: inputValue
+        inputValue: inputValue,
+        floatingMessage : floatingMessage
     }
 }
 
-export default connect(mapStatetoProps, { updateDishArray, updateInputValue })(SearchComponent)
+export default connect(mapStatetoProps, { updateDishArray, updateInputValue, updateFloatingMessage })(SearchComponent)
 
 
 /*

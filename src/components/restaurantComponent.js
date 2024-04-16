@@ -1,17 +1,18 @@
 import { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { updateRestaurantArray } from "./action"
 import { connect } from "react-redux"
 import { useDispatch } from "react-redux"
 import axios from "axios"
 import RestaurantDetailsComponent from "./restaurantDetailsComponent"
 import HeadersComponent from "./headersComponent"
-
+import "./restaurantDetailsComponent.css" 
 
 function RestaurantComponent(props) {
     const {restaurantName} = useParams()
     const {updateRestaurantArray, restaurantArray} = props
     const dispatch = useDispatch()
+
    
     try {
 
@@ -42,6 +43,7 @@ function RestaurantComponent(props) {
             <HeadersComponent/>
         <h1 style={{textAlign : "center"}}>{restaurantName}</h1>
         <ul>{restaurantArray.map(each => (<RestaurantDetailsComponent result = {each}/>))}</ul>
+        <Link to = "/cart"><button className="gotoCartBtn">Go to Cart</button></Link>
         </div>
     )
 }
