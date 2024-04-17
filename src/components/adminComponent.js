@@ -3,6 +3,7 @@ import { connect, useDispatch } from "react-redux"
 import {uploadFile} from "./action"
 import axios from "axios"
 import "./headersComponent.css"
+import HeadersComponent from "./headersComponent"
 
 // import Cookie from "js-cookie"
 
@@ -42,6 +43,8 @@ function AdminComponent(props) {
 
     return(
 
+       <div>
+        <HeadersComponent/>
        
         
         <div className="admin-cart">
@@ -49,9 +52,9 @@ function AdminComponent(props) {
             <input accept=".csv" type="file" onChange={event => uploadFile(event.target.files[0])}/>
             <button onClick={onUploadFile} className="uploadBtn">UploadFile</button> <br/> <br/>
 
-            <a href = {`${process.env.PUBLIC_URL}/foodSample.csv`} download = "foodSample.csv"><button className="downloadBtn">Download Sample File</button></a>
+            <a href = {`${process.env.PUBLIC_URL}/foodSample.csv`} download = "foodSample.csv" className="admin-a"><button className="downloadBtn">Download Sample File</button></a>
 
-         
+            </div>
         </div>
     )
 }
