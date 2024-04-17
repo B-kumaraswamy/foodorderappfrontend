@@ -19,3 +19,32 @@
     color: lightseagreen
   }
   
+  #admin {
+ color: lightgray;
+  }
+
+  .admin-cart {
+    position: relative;
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+
+  .downloadBtn {
+    position: absolute;
+    width: 150px;
+    
+    
+  }
+
+  a {
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 150px;
+  }
+
+  .uploadBtn {
+    position: inherit;
+  }

@@ -6,8 +6,8 @@ import { connect } from "react-redux"
 import { updateDishArray, updateFloatingMessage, updateInputValue } from "./action"
 import { useDispatch } from "react-redux"
 import DishComponent from "./dishComponent"
-import { useParams, Navigate } from "react-router-dom"
-import { useEffect, useCallback } from "react"
+import { useParams, Navigate, useNavigate } from "react-router-dom"
+import { useEffect, useCallback, useState } from "react"
 import { Link } from "react-router-dom"
 import FloatingMessage from "./floatingComponent"
 function SearchComponent(props) {
@@ -16,8 +16,10 @@ function SearchComponent(props) {
     const { dishArray, inputValue, updateDishArray, updateInputValue, floatingMessage } = props
     const dispatch = useDispatch()
     const { dishName } = useParams()
-
+    const navigate = useNavigate()
+    const [url, setUrl] = useState(false) 
     const handleChange = useCallback((value) => {
+        console.log("inside handlechange inputvalue is", value)
         dispatch(updateInputValue(value))
         
         const handleSearch = async (name) => {
@@ -47,21 +49,56 @@ function SearchComponent(props) {
                    
                 }
             }
+
+            
+           
+
         }
         handleSearch(value)
+       
     }, [dispatch, updateDishArray, updateInputValue])
 
     useEffect(() => {
         if (dishName) {
             console.log("inside dishName useeffect", dishName)
             handleChange(dishName)
+           
         }
-    }, [dishName, handleChange])
+    }, [dishName, handleChange, inputValue])
+
+ 
+    useEffect(() => {
+        if (inputValue.trim() === "") {
+            dispatch(updateInputValue(""))
+         
+            setUrl(true);
+        }
+
+        else {
+            dispatch(updateInputValue(inputValue))
+        }
+       
+    }, [inputValue, dispatch, updateInputValue]);
+       
+       useEffect(() => {
+       if(url === true && inputValue.trim()=== "") {
+        
+            console.log("inside empty inputvalue if")
+            navigate("/")   
+        
+        setUrl(false)
+       }
+       }, [inputValue, url, navigate, updateInputValue, dispatch])
+    
+
+
+
 
     const renderContent = () => {
         if (inputValue === "" && token !== undefined) {
             return (
                 <div>
+                   
                     <HeadersComponent />
                     <div className="body">
                         <div className="search">
