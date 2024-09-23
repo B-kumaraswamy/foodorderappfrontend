@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import "./headersComponent.css"
 import { useDispatch } from "react-redux"
 import { connect } from "react-redux"
-import {  updateInputValue } from "./action"
+import {  updateFloatingMessage, updateInputValue } from "./action"
 import Cookie from "js-cookie"
 import { useNavigate } from "react-router-dom"
 function HeadersComponent(props) {
@@ -12,7 +12,7 @@ function HeadersComponent(props) {
        
 
         const onLogout = () => {
-               
+              dispatch(updateFloatingMessage(""))
                 Cookie.remove("jwt_token")
                 navigate("/login")
                

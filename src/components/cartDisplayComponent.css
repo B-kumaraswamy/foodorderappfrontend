@@ -113,3 +113,10 @@
 .emptycart-heading {
     margin-left: 580px;
 }
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }

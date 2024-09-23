@@ -6,8 +6,8 @@ import axios from "axios"
 function RestaurantDetailsComponent(props) {
     const dispatch = useDispatch()
     console.log("props in the RestaurantDetailsComponent", props)
-    const {dishName, price, imageUrl, _id} = props.result
-    const {items,updateQuantity, updateItems, updateFloatingMessage} = props
+    const {dishName, price, imageUrl, _id} = props.result //from restaurant component
+    const {items,updateQuantity, updateItems, updateFloatingMessage} = props //from store
 
 
 const onAddingFoodItem = async() => {
@@ -31,6 +31,7 @@ const onAddingFoodItem = async() => {
         const resultArray = response.data.result[0]
         let cartRestaurantName = resultArray.restaurant
         console.log("cartRestaurantName", cartRestaurantName)
+        console.log("props.result.restaurant name", props.result.restaurant )
        console.log("verifying res", cartRestaurantName === props.result.restaurant)
        if(cartRestaurantName === props.result.restaurant) {
         dispatch(updateQuantity(_id, 1))

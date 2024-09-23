@@ -23,6 +23,7 @@ function LoginComponent(props) {
     const onLogin = async() => {
        
         try {
+           
           
             const url = "https://foodorderappbackend.onrender.com/login"
          const body = {
@@ -41,13 +42,11 @@ function LoginComponent(props) {
            
             setTimeout(() => {
                 dispatch(updateNav(true))
+                dispatch(updateInputValue(""))
                 Cookie.set("jwt_token", response.data.token)
                 dispatch(updateFloatingMessage(""))
             },1000)
             
-          
-
-        
 
            
         }
@@ -121,7 +120,7 @@ function LoginComponent(props) {
   }
 
   else  {
-    dispatch(updateInputValue(""))
+   
     return <Navigate to = "/"/>
   }
 

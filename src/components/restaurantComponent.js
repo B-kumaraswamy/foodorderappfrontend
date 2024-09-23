@@ -42,7 +42,7 @@ function RestaurantComponent(props) {
         <div>
             <HeadersComponent/>
         <h1 style={{textAlign : "center"}}>{restaurantName}</h1>
-        <ul>{restaurantArray.map(each => (<RestaurantDetailsComponent result = {each}/>))}</ul>
+        <ul>{restaurantArray.map((each, index) => (<RestaurantDetailsComponent key = {index} result = {each}/>))}</ul>
         <Link to = "/cart"><button className="gotoCartBtn">Go to Cart</button></Link>
         </div>
     )

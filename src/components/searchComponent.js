@@ -18,6 +18,7 @@ function SearchComponent(props) {
     const { dishName } = useParams()
     const navigate = useNavigate()
     const [url, setUrl] = useState(false) 
+    
     const handleChange = useCallback((value) => {
         console.log("inside handlechange inputvalue is", value)
         dispatch(updateInputValue(value))
@@ -64,21 +65,22 @@ function SearchComponent(props) {
             handleChange(dishName)
            
         }
-    }, [dishName, handleChange, inputValue])
+    }, [dishName, handleChange])
 
  
-    useEffect(() => {
+   useEffect(() => {
         if (inputValue.trim() === "") {
-            dispatch(updateInputValue(""))
+            //dispatch(updateInputValue(""))
          
             setUrl(true);
+            
         }
 
         else {
             dispatch(updateInputValue(inputValue))
         }
        
-    }, [inputValue, dispatch, updateInputValue]);
+    }, [inputValue, dispatch, updateInputValue]); 
        
        useEffect(() => {
        if(url === true && inputValue.trim()=== "") {

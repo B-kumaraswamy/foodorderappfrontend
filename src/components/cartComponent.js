@@ -9,6 +9,9 @@ import "./cartDisplayComponent.css"
 import { useNavigate, Navigate } from "react-router-dom"
 import Cookie from "js-cookie"
 import FloatingMessage from "./floatingComponent"
+import ClipLoader from 'react-spinners/ClipLoader';
+//npm install react-spinners
+
 function CartComponent(props) {
     const {items, cartList,floatingMessage, updateCartList, updateFloatingMessage, updateInputValue} = props 
    //const restaurantName = cartList[0].restaurant
@@ -39,7 +42,8 @@ function CartComponent(props) {
             dispatch(updateCartList([]))
            
             try {
-                const itemIds = Object.keys(items).filter(eachKey => items[eachKey] !== 0)
+                const itemIds = Object.keys(items).filter(eachKey => items[eachKey] !== 0) 
+                // const itemIds = Object.keys(items) also works since items contains dishes added atleast once.
                 //sending the req to the api which has the dishes with quantity atleast 1
                 // This code filters out the keys from the items object that have non-zero values, and itemIds will contain only those keys.
 
@@ -63,14 +67,16 @@ function CartComponent(props) {
     }, [items, dispatch, updateCartList])
 
     
- const totalArray = cartList.map(each => items[each._id]*each.price)
+ const totalArray = cartList.map(each => items[each._id]*each.price) // gets total price of each item i.e. quantity*price. For ex: biryani quantity 2 * 500 each = 1000/-
 const grandTotal = totalArray.reduce((total, eachTotal) => total + eachTotal,0)
 
 console.log("grandtotal using reduce", grandTotal)
  //console.log("total by doing mapping", total.reduce())
 
 if(loading) {
-    return null
+    <div className="spinner-container">
+         <ClipLoader color = {"#f6089b"}/>
+         </div>
 }
 
 else if(cartList.length === 0 && token !== undefined) {
