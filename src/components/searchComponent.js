@@ -82,16 +82,16 @@ function SearchComponent(props) {
        
     }, [inputValue, dispatch, updateInputValue]); 
        
-       useEffect(() => {
-       if(url === true && inputValue.trim()=== "") {
-        
-            console.log("inside empty inputvalue if")
-            navigate("/")   
-        
-        setUrl(false)
-       }
-       }, [inputValue, url, navigate, updateInputValue, dispatch])
+    useEffect(() => {
+    if(url === true && inputValue.trim()=== "") {
     
+        console.log("inside empty inputvalue if")
+        navigate("/")   
+    
+    setUrl(false)
+    }
+    }, [inputValue, url, navigate, updateInputValue, dispatch])
+
 
 
 
