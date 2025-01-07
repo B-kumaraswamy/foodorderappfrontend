@@ -8,8 +8,9 @@ import Clarity from '@microsoft/clarity';
 const projectId = "ppxz7ixe0n"
 
 Clarity.init(projectId);
-
-
+let userName = "kumar"
+Clarity.identify(userName);
+console.log("kumar-12345", null, null, userName)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
