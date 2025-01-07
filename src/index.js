@@ -4,6 +4,11 @@ import './index.css';
 
 import reportWebVitals from './reportWebVitals';
 import FoodOrderApp from './App';
+import Clarity from '@microsoft/clarity';
+const projectId = "ppxz7ixe0n"
+
+Clarity.init(projectId);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
