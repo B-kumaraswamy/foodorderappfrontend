@@ -1,0 +1,33 @@
+.dish-list {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Optional: Add border between items */
+}
+
+.dish-list:nth-child(odd) {
+    background-color: #fff; /* White background for odd items */
+}
+
+.dish-list:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey background for even items */
+}
+
+.dish-list img {
+    width: 80px; /* Adjust the image width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Optional: Adjust the margin between image and text */
+}
+
+.dish-heading, .dish-category {
+    margin: 0;
+}
+
+.dish-heading {
+    font-size: 18px; /* Adjust the font size as needed */
+}
+
+.dish-category {
+    font-size: 14px; /* Adjust the font size as needed */
+    color: #666; /* Optional: Adjust the text color */
+}

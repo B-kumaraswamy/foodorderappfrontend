@@ -1,0 +1,54 @@
+/* Add styles to position search and cuisines list */
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .search {
+    margin-bottom: 20px; /* Add margin to separate search from cuisine list */
+  }
+  
+  .cuisines-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center cuisine items horizontally */
+  }
+  
+  .cuisine-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .cuisine-item img {
+    width: 70px; /* Reduce size as needed */
+    height: 70px; /* Reduce size as needed */
+    border-radius: 50%; /* Make it circular */
+    margin-bottom: 0;
+  }
+  
+  .cuisine-item .dish-name {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    /* Add any other styling you want for the dish name */
+  }
+  
+  button {
+    border: none; /* Remove border */
+    background-color: transparent; /* Make background color transparent */
+}
+
+.search-width {
+  width: 300px;
+  height: 30px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+ 
+}

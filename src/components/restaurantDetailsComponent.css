@@ -1,0 +1,117 @@
+.li-cart {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 10;
+    width: 50%;
+    left: 300px;
+   
+   
+}
+
+.rest-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.dish-info {
+    flex: 1; /* Take up remaining space */
+}
+
+.image-cart {
+    position: relative; /* Relative positioning for absolute children */
+}
+
+.res-dish-image {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    object-fit: cover; /* Maintain aspect ratio */
+    margin-right: 10px;
+}
+
+button {
+    position: absolute;
+    bottom: 0;
+    right: 35px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+div p {
+    font-weight: bold;
+}
+
+
+
+.quantity-btn1{
+    position: absolute;
+    bottom: 0;
+    right: 80px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.quantity-btn2 {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.quantity-btn1 {
+    margin-right: 5px; /* Adjust margin between buttons */
+}
+
+.quantity-value {
+    position: absolute;
+    bottom: 0;
+    right: 38px;
+    padding: 2px 15px;
+    color: rgb(27, 28, 27);
+    border: none;
+    background-color: white;
+    font-size: medium;
+    border-radius: 5px;
+    
+    
+}
+
+
+
+
+.quantity-value {
+    margin: 0 5px; /* Adjust the spacing between the buttons and the quantity */
+    color : rgb(9, 242, 118);
+    font-weight: bold;
+}
+
+.gotoCartBtn {
+   position: fixed;
+   right: 5px;
+   padding: 10px;
+   margin-bottom: 10px;
+   font-size: medium;
+   
+}

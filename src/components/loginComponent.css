@@ -1,0 +1,70 @@
+.login-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    border: 2px solid grey;
+    width: 300px;
+    position: relative;
+   left: 480px;
+   margin-top: 50px;
+   
+  }
+  
+  .login-form {
+    width: 250px; /* Reduced width */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa; /* Light gray background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-heading {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .login-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da; /* Light gray border */
+    border-radius: 4px;
+  }
+  
+  .login-button {
+    width: 80px;
+    padding: 10px; /* Adjusted padding */
+    background-color: #007bff; /* Primary color */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    left: 50px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-width: 50px;
+    position: absolute;
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .link {
+    margin-top: 15px;
+  }
+  
+  .link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .link a:hover {
+    text-decoration: underline;
+  }
+  
+  .error {
+    color: red;
+  }
